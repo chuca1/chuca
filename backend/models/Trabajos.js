@@ -17,7 +17,8 @@ const trabajosSchema = new Schema(
     date: {
       required: true,
       type: String
-    }
+    },
+    link: String
   },
   {
     versionKey: false,
