@@ -7,6 +7,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const path = require("path");
+const cors = require("cors");
 
 mongoose
   .connect(process.env.DB, { useNewUrlParser: true })
@@ -33,7 +34,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 // Express View engine setup
-
+app.use(
+  cors({
+    credentials: true,
+    origin: [
+      "https://affectionate-franklin-d5b3a2.netlify.com",
+      "http://localhost:3000"
+    ]
+  })
+);
 app.use(
   require("node-sass-middleware")({
     src: path.join(__dirname, "public"),
